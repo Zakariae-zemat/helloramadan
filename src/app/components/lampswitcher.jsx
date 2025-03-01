@@ -8,8 +8,8 @@ export default function LampSwitcher() {
   const [audio, setAudio] = useState(null);
 
   useEffect(() => {
-    const newAudio = new Audio("/song.mp3");
-    newAudio.loop = true;
+    const newAudio = new Audio("/song.mp3"); // Load the song
+    newAudio.loop = true; // Loop music continuously
     setAudio(newAudio);
   }, []);
 
@@ -20,15 +20,16 @@ export default function LampSwitcher() {
       if (!isOn) {
         audio.play().catch((error) => console.error("Autoplay blocked:", error));
       } else {
-        audio.pause();
-        audio.currentTime = 0;
+        audio.pause(); // Stop music
+        audio.currentTime = 0; // Reset music
       }
     }
   };
 
   return (
     <div className="relative h-screen flex flex-col items-center justify-center bg-gradient-to-b from-gray-900 to-gray-700 px-4 overflow-hidden">
-
+      
+      {/* 🌙✨ Top Cover Image - Appears & Slides Down with Side Images */}
       {isOn && (
         <motion.div
           className="absolute top-0 left-0 w-full z-0"
@@ -57,7 +58,8 @@ export default function LampSwitcher() {
             isOn ? "drop-shadow-[0_0_80px_rgb(255,255,0)]" : ""
           }`}
         />
-
+      
+        {/* Button - Controls Light & Music */}
         <motion.button
           onClick={toggleLight}
           className="mt-20 md:mt-32 px-10 py-4 text-lg font-semibold text-white rounded-lg transition-all duration-300 
@@ -70,6 +72,7 @@ export default function LampSwitcher() {
         </motion.button>
       </div>
 
+      {/* Side Images (Desktop) - Appear at the Same Time as Cover & Zoom In/Out */}
       {isOn && (
         <div className="hidden md:block z-10">
           <motion.div
@@ -116,7 +119,8 @@ export default function LampSwitcher() {
         </motion.div>
       )}
 
-      <footer className="absolute bottom-8 text-white text-sm text-center opacity-90 px-4">
+      {/* ⚡ Updated Footer - Clean & Professional */}
+      <footer className="absolute bottom-4 text-white text-sm text-center opacity-90 px-4">
         Made with ❤️ by <span className="font-semibold">Zemat</span> |  
         <a href="https://github.com/Zakariae-zemat/helloramadan" target="_blank" rel="noopener noreferrer" className="underline ml-1">
           Open Source 💻
