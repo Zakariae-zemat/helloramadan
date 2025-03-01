@@ -8,8 +8,8 @@ export default function LampSwitcher() {
   const [audio, setAudio] = useState(null);
 
   useEffect(() => {
-    const newAudio = new Audio("/song.mp3"); // Load the song
-    newAudio.loop = true; // Loop music continuously
+    const newAudio = new Audio("/song.mp3");
+    newAudio.loop = true;
     setAudio(newAudio);
   }, []);
 
@@ -18,18 +18,17 @@ export default function LampSwitcher() {
 
     if (audio) {
       if (!isOn) {
-        audio.play().catch((error) => console.error("Autoplay blocked:", error)); // Start music
+        audio.play().catch((error) => console.error("Autoplay blocked:", error));
       } else {
-        audio.pause(); // Stop music
-        audio.currentTime = 0; // Reset music
+        audio.pause();
+        audio.currentTime = 0;
       }
     }
   };
 
   return (
     <div className="relative h-screen flex flex-col items-center justify-center bg-gradient-to-b from-gray-900 to-gray-700 px-4 overflow-hidden">
-      
-      {/* 🌙✨ Top Cover Image - Appears & Slides Down with Side Images */}
+
       {isOn && (
         <motion.div
           className="absolute top-0 left-0 w-full z-0"
@@ -48,7 +47,6 @@ export default function LampSwitcher() {
         </motion.div>
       )}
 
-      {/* Main Lamp Image */}
       <div className="flex flex-col items-center z-10">
         <Image
           src={isOn ? "/lamp-on.png" : "/lamp-off.png"}
@@ -59,11 +57,10 @@ export default function LampSwitcher() {
             isOn ? "drop-shadow-[0_0_80px_rgb(255,255,0)]" : ""
           }`}
         />
-      
-        {/* Button - Controls Light & Music */}
+
         <motion.button
           onClick={toggleLight}
-          className="mt-24 md:mt-32 px-10 py-4 text-lg font-semibold text-white rounded-lg transition-all duration-300 
+          className="mt-20 md:mt-32 px-10 py-4 text-lg font-semibold text-white rounded-lg transition-all duration-300 
                      bg-gradient-to-r from-yellow-500 to-orange-600 hover:from-yellow-600 hover:to-orange-700 
                      shadow-lg transform hover:scale-105"
           whileHover={{ scale: 1.1 }}
@@ -73,7 +70,6 @@ export default function LampSwitcher() {
         </motion.button>
       </div>
 
-      {/* Side Images (Desktop) - Appear at the Same Time as Cover & Zoom In/Out */}
       {isOn && (
         <div className="hidden md:block z-10">
           <motion.div
@@ -104,7 +100,7 @@ export default function LampSwitcher() {
         </div>
       )}
 
-      {/* Mobile: Right Image Appears BELOW the Button - Bigger in Mobile */}
+
       {isOn && (
         <motion.div
           className="md:hidden mt-6 z-10"
@@ -120,8 +116,7 @@ export default function LampSwitcher() {
         </motion.div>
       )}
 
-      {/* ⚡ Updated Footer - Clean & Professional */}
-      <footer className="absolute bottom-4 text-white text-sm text-center opacity-90 px-4">
+      <footer className="absolute bottom-8 text-white text-sm text-center opacity-90 px-4">
         Made with ❤️ by <span className="font-semibold">Zemat</span> |  
         <a href="https://github.com/Zakariae-zemat/helloramadan" target="_blank" rel="noopener noreferrer" className="underline ml-1">
           Open Source 💻
